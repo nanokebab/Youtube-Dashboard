@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Page Title Styling */
+        h1 {
+            text-align: left;
+            margin-top: 20px;
+            font-size: 2em;
+            color: #333;
+        }
+
+        /* Thumbnails Title Styling */
+        h2 {
+            text-align: left;
+            margin-top: 10px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        /* Container for all the thumbnails */
+        .thumbnail-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Each thumbnail item */
+        .thumbnail-item {
+            width: 200px;
+            text-align: center;
+        }
+
+        /* The clickable image */
+        .thumbnail-item img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .thumbnail-item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Title, producer, release date styling */
+        .thumbnail-title {
+            font-weight: bold;
+            margin: 10px 0 5px 0;
+        }
+
+        .thumbnail-producer {
+            font-style: normal;
+            color: #555;
+        }
+
+        .thumbnail-release-date {
+            font-style: normal;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page Title -->
+    <h1>Subscription Feed</h1>
+
+    <br>
+    {% for genre in genres%}
+
+    
+    <h2>{{genre}}</h2>
+
+    <div class="thumbnail-container">
+
+        {% for video in subscribed_videos%}
+            {% if video.class_field == genre%}
+            <!-- Example Thumbnail 2 -->
+            <div class="thumbnail-item">
+                <a href={{video.video_url}} target="_blank">
+                    <img src={{video.thumbnail_url}} alt="Thumbnail 2">
+                </a>
+                <div class="thumbnail-title">{{video.video_title}}</div>
+                <div class="thumbnail-producer">{{video.channel_name}}</div>
+                <div class="thumbnail-release-date">{{video.video_date}}</div>
+            </div>
+            {% endif %}
+        {% endfor %}
+
+        <!-- You can duplicate the above thumbnail-item blocks for more thumbnails -->
+    </div>
+    {% endfor %}
+
+
+</body>
+</html>
