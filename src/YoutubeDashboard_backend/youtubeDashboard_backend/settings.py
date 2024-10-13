@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'youtubeDashboard_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/Users/derkwild/Documents/GitHub/Youtube-Dashboard/src/subscribed_videos2.sqlite3',
+        'NAME': '/Users/derkwild/Documents/GitHub/Youtube-Dashboard/data/subscribed_videos2.sqlite3',
     }
     # 'NAME': BASE_DIR / 'db.sqlite3',
     # ,
