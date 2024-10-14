@@ -68,27 +68,6 @@
             font-style: normal;
             color: #777;
         }
-
-        /* Producer filter buttons */
-        .filter-container {
-            text-align: left;
-            margin: 20px;
-        }
-
-        .producer-filter {
-            padding: 10px 15px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .producer-filter.selected {
-            background-color: #4CAF50;
-            color: white;
-        }
     </style>
 </head>
 <body>
@@ -97,20 +76,10 @@
     <h1>Subscription Feed</h1>
 
     <br>
-    {% for genre, channels_in_genre in genre_map_dict.items %}
+    {% for genre in genres%}
 
     
     <h2>{{genre}}</h2>
-
-    <!-- Filter Container -->
-    <div class="filter-container">
-        <form id="filter-form">
-            {% for channel_name in channels_in_genre %}
-                <button type="button" class="channel_name-filter {% if channel_name in selected_channel_names %}selected{% endif %}" 
-                    data-channel_name="{{ channel_name }}">{{ channel_name }}</button>
-            {% endfor %}
-        </form>
-    </div>
 
     <div class="thumbnail-container">
 
@@ -131,41 +100,6 @@
         <!-- You can duplicate the above thumbnail-item blocks for more thumbnails -->
     </div>
     {% endfor %}
-
-    <script>
-        // Get all producer buttons
-        const filterButtons = document.querySelectorAll('.channel_name-filter');
-        const form = document.getElementById('filter-form');
-
-        // Function to update the filters in the URL
-        function updateFilter() {
-            const selectedProducers = [];
-            filterButtons.forEach(button => {
-                if (button.classList.contains('selected')) {
-                    selectedProducers.push(button.dataset.channel_name);
-                }
-            });
-
-            // Update the URL with the selected producers
-            const url = new URL(window.location.href);
-            url.searchParams.delete('channel_name'); // Clear previous selections
-            selectedProducers.forEach(channel_name => {
-                url.searchParams.append('channel_name', channel_name);
-            });
-
-            // Redirect to the updated URL
-            window.location.href = url.toString();
-        }
-
-        // Add event listeners to each button
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                button.classList.toggle('selected');
-                updateFilter();
-            });
-        });
-    </script>
-
 
 
 </body>
