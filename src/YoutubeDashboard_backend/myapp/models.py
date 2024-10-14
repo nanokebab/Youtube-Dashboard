@@ -7,7 +7,8 @@ class SubscribedVideos(models.Model):
     video_id = models.TextField(blank=True, null=True)
     video_title = models.TextField(blank=True, null=True)
     video_url = models.TextField(blank=True, null=True)
-    video_date = models.TextField(blank=True, null=True)  # This field type is a guess.
+    #video_date = models.TextField(blank=True, null=True)  # This field type is a guess.
+    video_date = models.DateTimeField(blank=True, null=True)
     thumbnail_url = models.TextField(blank=True, null=True)
 
     class Meta:
